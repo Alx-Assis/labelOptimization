@@ -5,7 +5,7 @@ import fs from 'fs/promises'
 import fs2 from 'fs'
 //pasta origem 
 let caminho = path.join(__dirname,'../../storage/downloads/etiqueta/')
-console.log(caminho)
+
 async function read() {
     fs.readdir(path.join(caminho)).then(files=>{
     const _docBytesRead=files.filter(file=>file.endsWith('.pdf'))
@@ -48,6 +48,5 @@ async function createPdf(_docBytesRead) {
      }
   console.log(`${_docBytesRead.length} etiqueta geradas`)
 }
-
-//read()
+// read()
 export default read

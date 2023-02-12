@@ -1,9 +1,15 @@
+import dotenv from 'dotenv'
 import express  from 'express'
-import read from './index' 
+// import read from '../index'
+const read = require('../index.js')
 import cors from 'cors'
 
-const server  = express()
 
+dotenv.config()
+
+
+const server  = express()
+let PORT= process.env.PORT || 3000
 server.use(cors())
 server.use(express.json())
 
@@ -13,11 +19,7 @@ server.post('/api/v1/',async (request,response)=>{
   return response.json({menssage:"etiquetas geradas xom sucesso - pasta output"})
 
 })
-server.get('/api/v1/',(request,response)=>{
-  return response.json({menssage:"etiquetas geradas xom sucesso - pasta output"})
 
-})
-
-server.listen(3000,()=>{
-  console.log('servidir rodando  na porta 3000')
+server.listen(PORT,()=>{
+  console.log(`servidOr rodando  na porta ${PORT}`)
 })

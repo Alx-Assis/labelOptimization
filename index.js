@@ -1,18 +1,27 @@
-import { degrees, PDFDocument} from "pdf-lib"
-import path from 'path'
-import crypto from 'crypto'
-import fs from 'fs/promises'
-import fs2 from 'fs'
-//pasta origem 
-let caminho = path.join(__dirname,'../../storage/downloads/etiqueta/')
+// import { degrees, PDFDocument} from "pdf-lib"
+const {degrees,PDFDocument} = require('pdf-lib')
+// import path from 'path'
+const path = require('path')
+// import crypto from 'crypto'
+const crypto = require('crypto')
+// import fs from 'fs/promises'
+const fs = require('fs/promises')
+// import fs2 from 'fs'
+const fs2 = require('fs')
 
+let _docBytesRead
+
+let caminho = path.join(__dirname,'../../storage/downloads/etiqueta/')
 async function read() {
+  
+
     fs.readdir(path.join(caminho)).then(files=>{
-    const _docBytesRead=files.filter(file=>file.endsWith('.pdf'))
+    _docBytesRead=files.filter(file=>file.endsWith('.pdf'))
+    
       createPdf( _docBytesRead)
   })
-}
 
+}
 async function createPdf(_docBytesRead) {
   console.log(_docBytesRead,"createPdf")
   for (let i = 0; i < _docBytesRead.length; i++) {
@@ -49,4 +58,5 @@ async function createPdf(_docBytesRead) {
   console.log(`${_docBytesRead.length} etiqueta geradas`)
 }
 // read()
-export default read
+//export default read
+module.exports = read
